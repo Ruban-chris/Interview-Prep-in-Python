@@ -1,6 +1,3 @@
-from ctci.data_structures.node import Node
-from ctci.data_structures.unorderedList import UnorderedList
-
 Node1 = Node('a')
 Node2 = Node('b')
 Node3 = Node('q')
@@ -33,21 +30,21 @@ def returnIntersectingNode(ll1, ll2):
     # guard case
     if ll1.head is None or ll2.head is None:
         return False
-    
+
     # traverse the first list to the end
     length1 = 0
     runner1 = ll1.head
     while runner1.getNext() is not None:
         runner1 = runner1.getNext()
         length1 += 1
-    
+
     # traverse the second list to the end
     length2 = 0
     runner2 = ll2.head
     while runner2.getNext() is not None:
         runner2 = runner2.getNext()
         length2 += 1
-    
+
     # compare the pointers
     if runner1 != runner1:
         return False
@@ -64,11 +61,11 @@ def returnIntersectingNode(ll1, ll2):
             while length2 is not length1:
                 runner2 = runner2.getNext()
                 length2 -= 1
-        
+
         while runner1 != runner2:
             runner1 = runner1.getNext()
             runner2 = runner2.getNext()
-        
+
         # return the intersecting node
         return runner1
 

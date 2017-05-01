@@ -1,8 +1,6 @@
-# ctci-python
-My answers for Cracking the Coding Interview in python
+# Interview Prep in Python
+A place to keep my solutions to coding interview questions.  Questions are from Cracking the Coding Interview, Elements of Programming Interviews and a few from geeksforgeeks and InterviewBit.
 
-Run `python3 -m ctci.2.2-8` from root directory to run files.
-
-
-need to review dynamic programming
-memoization
+Todo List
+[ ] minimal data structures in python ideal for whiteboarding.
+[ ] reorganize code, add tests instead of printing values.

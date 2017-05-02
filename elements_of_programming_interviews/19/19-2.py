@@ -1,4 +1,6 @@
 # paint a boolean matrix
+
+# recursive solution
 import collections
 
 Coordinate = collections.namedtuple('Coordinate', ('i', 'j'))
@@ -60,3 +62,7 @@ assert(matrix1 == matrix2)
 
 paintMatrix(matrix2, Coordinate(3, 6))
 assert(matrix2 == matrix3)
+
+
+def paintMatrixIter(matrix, position):
+    

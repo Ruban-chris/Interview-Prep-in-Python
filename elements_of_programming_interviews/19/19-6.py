@@ -6,6 +6,7 @@
 
 # idea use bfs, and determine distance from starting point.
 # if two vertices, are the same distance away from the starting point and they share an edge,
+# we also use distance to keep track of which nodes have been visited.
 # return false
 
 class Vertex:

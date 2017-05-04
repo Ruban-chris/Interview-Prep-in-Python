@@ -6,7 +6,8 @@ def swap_bits(x, i, j):
         x ^= bit_mask
     return x
 
-# EPI solution is better.  TODO review this.
+# My solution does extra work checking previous bits
+# It does not raise a ValueError when bits are all 0 or 1.
 def closest_same_weight(x):
     i = 0
     j = None
@@ -22,6 +23,16 @@ def closest_same_weight(x):
                 break
         i += 1
     return swap_bits(x, i, j)
+
+# EPI solution
+def closest_same_weight_optimized(x):
+    NUM_UNSIGNED_BITS = 64
+    for i in range(NUM_UNSIGNED_BITS - 1):
+        if ((x >> i) & 1) != ((x >> (i + 1)) & 1):
+            x ^= (1 << i) | (1 << (i + 1))
+            return x
+
+    raise ValueError('All bits are 0 or 1')
 
 
 assert closest_same_weight(6) == 5

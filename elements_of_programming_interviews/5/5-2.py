@@ -25,4 +25,5 @@ def swapBits(number, i, j):
         number = setBit(number, i)
     return number
 
-print(swapBits(10, 0,1))
+assert swapBits(0b101111, 1, 4) == 0b111101
+assert swapBits(0b11100, 0, 2) == 0b11001

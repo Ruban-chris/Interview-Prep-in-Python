@@ -1,40 +1,52 @@
-import math
-import copy
+# Time complexity O(n) where n is the size of the bitword
+def reverse_bit_word(bit_word):
+    reversed = 0
+    while bit_word:
+        reversed <<= 1
+        reversed |= bit_word & 1
+        bit_word >>= 1
+    return reversed
 
-# in: str word of 64 bits '0111..0'
-# out: bits reversed
-def reverseBits(word):
-    w = copy.copy(word)
-    n = len(word)
-    
-    for i in range(int(math.ceil(n/2))):
-        w = "".join([w[:i], w[n-i-1], w[i+1:n-i-1], w[i], w[n-1:]])
-    
-    return w
-    
+assert(0b1101101101 == reverse_bit_word(0b1011011011))
 
-# word is integer in [0, 2^64-1]
-# idea: use direct-access lookup table for size-fixed chunks, e.g. length 16
-# use shift to get rid of head and tail bits
-# runtime O(1), space O(n)
+# we can improve reverseBitword by swapping bits i and j instead of going through it one by one
 
-def reverseBits3(word,n):
-    # create lookup table
-    global lookup
-    c = int(n/4) # chunk size
-    mask = int(math.pow(2, n) - 1)
-    chunk1 = (mask & word) >> 3 * c
-    chunk2 = (mask & word) << c) >> 3*c
-    chunk3 = (mask & word) << 2*c) >> 3*c
-    chunk4 = (mask & word) << 3*c) >> 3*c
-    return lookup[chunk1] + (lookup[chunk2] << c) + (lookup[chunk3] << 2*c) + (lookup[chunk4] << 3*c)
+# O(n/2)
+def swap_bits(bit_word, i, j):
+    if (bit_word & (1 << i)) >> i != (bit_word & (1 << j)) >> j:
+        bit_word ^= 1 << i
+        bit_word ^= 1 << j
+    return bit_word
 
-global lookup
-chunksize = 2
-wordsize = 8
-lookup = [0] * int(math.pow(2, chunksize))
+assert swap_bits(0b101111, 1, 4) == 0b111101
+assert swap_bits(0b11100, 0, 2) == 0b11001
 
-for n in list(range(int(math.pow(2, chunksize)))):
-    lookup[n] = reverseBits2(n, chunksize)
+def reverse_bit_word_improved(bit_word, bit_word_size):
+    i, j = 0, bit_word_size - 1
+    while i < j:
+        bit_word = swap_bits(bit_word, i, j)
+        i += 1
+        j -= 1
+    return bit_word
 
-print(reverseBits(10, wordsize))
+assert(0b1101101101 == reverse_bit_word_improved(0b1011011011, 10))
+
+
+# Time complexity O(size * 2 ** size)
+def generate_reverse_look_up_table(size):
+    return [reverse_bit_word_improved(bit_word, size) for bit_word in range(1 << size)]
+
+LOOK_UP = generate_reverse_look_up_table(16)
+
+# Time complexity O(n/L) where n is size of word and L is size of mask
+def reverse64BitWord(x):
+    MASK_SIZE = 16
+    BIT_MASK = 0xFFFF
+    a = LOOK_UP[(x >> (MASK_SIZE * 3)) & BIT_MASK]
+    b = LOOK_UP[(x >> (MASK_SIZE * 2)) & BIT_MASK] << MASK_SIZE
+    c = LOOK_UP[(x >> MASK_SIZE) & BIT_MASK] << MASK_SIZE * 2
+    d = LOOK_UP[x & BIT_MASK] << MASK_SIZE * 3
+    return a | b | c | d
+
+assert reverse64BitWord(64) == reverse_bit_word_improved(64, 64)
+assert reverse64BitWord(35327) == reverse_bit_word_improved(35327, 64)

@@ -6,7 +6,6 @@ def decimalIntegerPalindrome(integer):
     if integer < 0: return False
     while integer > 0:
         order = math.floor(math.log10(integer))
-        print('order', order)
         mask = 10 ** order
         greatestDigit = integer // mask
         smallestDigit = integer % 10

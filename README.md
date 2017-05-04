@@ -3,23 +3,27 @@ A place to keep my solutions to coding interview questions.  Questions are from 
 
 Todo List
 - [ ] reorganize, cleanup, annotate, add tests instead of printing values.
+- Concepts
+  - [ ] Bit Manipulation
+  - [ ] Memory (stack vs heap)
 - minimal data structures in python ideal for whiteboarding
-  - [ ] linked list, single/double
+  - [ ] linked list
+  - [ ] array
   - [ ] stack
   - [ ] queue
   - [ ] deqeue
   - [ ] min/max heap
   - hash and a hashing function
-  - [ ] binary trees
-  - [ ] red black tree
-  - [ ] avl tree
+  - [ ] trees
   - [ ] tries
   - LRU cache
   - graph in adjacency matrix and list forms
 - [ ] most important algorithms
   - [ ] bfs for trees and graphs
   - [ ] dfs for trees and graphs
+  - [ ] binary search
   - [ ] merge sort
   - [ ] quick sort
   - [ ] dijkstra
   - [ ] bellman-ford
+  - [ ] A*

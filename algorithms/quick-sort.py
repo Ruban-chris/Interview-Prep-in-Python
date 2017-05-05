@@ -1,3 +1,14 @@
+# Quicksort can be about two or three times faster than its main
+# competitors, merge sort and heapsort.
+
+# It is not a stable sort.  The relative order of equal sort items is not preserved.
+# Quicksort operates in-place on an array.
+# On average the algorithm takes O(nlogn)
+# Worst case it makes O(n ** 2) comparisons.
+
+# can be efficiently parallelized.
+# Recursion depth impacts scalability.
+
 def partition(array, left, right, pivot):
     while left <= right:
         while array[left] < pivot:

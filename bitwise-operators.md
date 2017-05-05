@@ -90,5 +90,9 @@ def updateBit(num, i, bitIs1):
   return (num & mask) | (value << i)
 ```
 
+# Techniques
 x & (x - 1) clears the lowest set bit in x
 x & ~(x - 1) extracts the lowest set bit in x.
+
+# Extract ith bit
+(x >> i) & 1

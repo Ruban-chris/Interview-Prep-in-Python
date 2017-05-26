@@ -1,59 +1,30 @@
-def isUniqueWithDictionary(string):
-    obj = {}
+# Time complexity O(n) where n is number of characters in string
+# Space complexity O(k) where k is number of unique characters in string
+def is_unique(string):
+    string_set = set()
     for char in string:
-        value = obj.get(char, None)
-        if value is None:
-            obj[char] = ''
-        else:
+        if char in string_set:
             return False
+        else:
+            string_set.add(char)
     return True
 
-# def isUniqueWithSet(string):
-
-# def isUniqueWithNoAdditionalDataStructures():
-
-# hints
-# bit vector 
-# O(nlogn)
-
-# do that n times divide the string by 2
-
-# n >> nlogn
-# asjglhqia
-# O(nlog(n) aaghijlqs
-# O(n)
-# nlog(n)
-# a == a
-# a == g
-# g == h
-# h == i
-# i == j
-# j == l
-# l == q
-# q == s
-# 
-# sort
-# acbda
-# 
-# aabcd
-# 
-# a [a,b] [c,d]
-
-# for nmber of character in string 
-#     string is cut in half
-    
-    
-# [0101010, 010101010, 01010, 0100101]
+assert(is_unique('asd1234567f'))
+assert(False == is_unique('asd1234567ff'))
 
 
-# 
-# startingPoint = 0
-# 
-# for char in string:
-#     for i starting at startingPoint less than string length:
-#         if char == string[i]:
-#             return False
-#         else
-#             index++
-#     startingPoint++
-# return True
+# Time complexity O(nlogn)
+# Space complexity O(1)
+def is_unique_2(string):
+    stringAsArray = list(string)
+    stringAsArray.sort()
+    lastChar = None
+    for char in stringAsArray:
+        if char == lastChar:
+            return False
+        else:
+            lastChar = char
+    return True
+
+assert(is_unique_2('asd1234567f'))
+assert(False == is_unique_2('asd1234567ff'))
